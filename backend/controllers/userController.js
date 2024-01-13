@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 
 //GENERATE TOKEN
 const generateToken = (id) => {
@@ -48,7 +49,7 @@ const registerUser = asyncHandler( async (req, res) => {
         expires: new Date(Date.now() + 1000 * 86400),
         sameSite: "none",
         secure: true
-    })
+    });
 
     if (user) {
         const {_id, name, email, photo, phone, bio} = user;
@@ -69,7 +70,52 @@ const registerUser = asyncHandler( async (req, res) => {
 
 //LOGIN USER
 const loginUser = asyncHandler( async (req, res) => {
-    res.send("Login user");
+    const {email,  password} = req.body;
+
+    //VALIDATION
+    if (!email || !password) {
+        res.status(400);
+        throw new Error("Please add email and password");
+    }
+
+    //CHECK IF ACCOUNT EXISTS
+    const user = await User.findOne({email});
+    if (!user) {
+        res.status(400);
+        throw new Error("User not found, please create an account");
+    }
+
+    //PASSWORD CHECKER
+    const passwordIsCorrect = await bcrypt.compare(password, user.password);
+
+    //GENERATE TOKEN
+    const token = generateToken(user._id);
+
+    //SENDING HTTP COOKIE
+    res.cookie("token", token, {
+        path: "/",
+        httpOnly: true,
+        expires: new Date(Date.now() + 1000 * 86400),
+        sameSite: "none",
+        secure: true
+    });
+
+    if (user && passwordIsCorrect) {
+        const {_id, name, email, photo, phone, bio} = user;
+        res.status(200).json({
+            _id: _id,
+            name: name,
+            email: email,
+            photo: photo,
+            phone: phone,
+            bio: bio,
+            token
+        });
+    } else {
+        res.status(400);
+        throw new Error("Invalid email or password");
+    }
+
 });
 
 module.exports = {
