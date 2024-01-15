@@ -7,7 +7,7 @@ const {
   getItem,
   deleteItem,
   updateItem,
-} = require("../controllers/ptemController");
+} = require("../controllers/itemController");
 const { upload } = require("../utils/fileUpload");
 
 router.post("/", protect, upload.single("image"), createItem);

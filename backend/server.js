@@ -4,8 +4,11 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const userRoute = require("./routes/userRoute");
+const itemRoute = require("./routes/itemRoute");
+const contactRoute = require("./routes/contactRoute");
 const errorHandler = require("./middleWare/errorMiddleware");
 const cookieParser = require("cookie-parser");
+const path = require("path");
 
 const app = express();
 
@@ -16,8 +19,12 @@ app.use(express.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(cors());
 
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 //ROUTES MIDDLEWARE
 app.use("/api/users", userRoute);
+app.use("/api/items", itemRoute);
+app.use("/api/contactus", contactRoute);
 
 //ROUTING
 app.get("/", (req, res) => {
