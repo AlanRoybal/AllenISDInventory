@@ -9,6 +9,7 @@ const initialState = {
   isSuccess: false,
   isLoading: false,
   message: "",
+  category: [],
 };
 
 // Create New Item
@@ -49,12 +50,76 @@ export const getItems = createAsyncThunk(
   }
 );
 
+// Delete a Product
+export const deleteItem = createAsyncThunk(
+  "items/delete",
+  async (id, thunkAPI) => {
+    try {
+      return await itemService.deleteItem(id);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      console.log(message);
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// Get a product
+export const getItem = createAsyncThunk(
+  "items/getItem",
+  async (id, thunkAPI) => {
+    try {
+      return await itemService.getItem(id);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      console.log(message);
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+// Update product
+export const updateItem = createAsyncThunk(
+  "items/updateItem",
+  async ({ id, formData }, thunkAPI) => {
+    try {
+      return await itemService.updateItem(id, formData);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      console.log(message);
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 const itemSlice = createSlice({
   name: "item",
   initialState,
   reducers: {
-    CALC_STORE_VALUE(state, action) {
-      console.log("store value");
+    CALC_CATEGORY(state, action) {
+      const products = action.payload;
+      const array = [];
+      products.map((item) => {
+        const { category } = item;
+
+        return array.push(category);
+      });
+      const uniqueCategory = [...new Set(array)];
+      state.category = uniqueCategory;
     },
   },
   extraReducers: (builder) => {
@@ -91,12 +156,59 @@ const itemSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
         toast.error(action.payload);
+      })
+      .addCase(deleteItem.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteItem.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isError = false;
+        toast.success("Item deleted successfully");
+      })
+      .addCase(deleteItem.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        toast.error(action.payload);
+      })
+      .addCase(getItem.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getItem.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isError = false;
+        state.product = action.payload;
+      })
+      .addCase(getItem.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        toast.error(action.payload);
+      })
+      .addCase(updateItem.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateItem.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isError = false;
+        toast.success("Item updated successfully");
+      })
+      .addCase(updateItem.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        toast.error(action.payload);
       });
   },
 });
 
-export const { CALC_STORE_VALUE } = itemSlice.actions;
+export const { CALC_CATEGORY } = itemSlice.actions;
 
 export const selectIsLoading = (state) => state.item.isLoading;
+export const selectItem = (state) => state.item.product;
+export const selectCategory = (state) => state.item.category;
 
 export default itemSlice.reducer;
