@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
-import ItemForm from "../../components/itemForm/ItemForm";
+import ItemForm from "../../components/item/itemForm/ItemForm";
 import {
   createItem,
   selectIsLoading,

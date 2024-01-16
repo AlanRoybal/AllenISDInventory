@@ -1,6 +1,6 @@
 import React from "react";
 import "react-quill/dist/quill.snow.css";
-import Card from "../card/Card";
+import Card from "../../card/Card";
 import "./ItemForm.scss";
 
 const ItemForm = ({
