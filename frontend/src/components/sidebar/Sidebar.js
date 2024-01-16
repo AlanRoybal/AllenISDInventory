@@ -3,10 +3,16 @@ import "./Sidebar.scss";
 import { HiMenuAlt3 } from "react-icons/hi";
 import menu from "../../data/sidebar";
 import SidebarItem from "./SidebarItem";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = ({ children }) => {
   const [isOpen, setIsOpen] = useState(true);
   const toggle = () => setIsOpen(!isOpen);
+  const navigate = useNavigate();
+
+  const goHome = () => {
+    navigate("/");
+  };
 
   return (
     <div className="layout">
