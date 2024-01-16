@@ -111,9 +111,9 @@ const itemSlice = createSlice({
   initialState,
   reducers: {
     CALC_CATEGORY(state, action) {
-      const products = action.payload;
+      const items = action.payload;
       const array = [];
-      products.map((item) => {
+      items.map((item) => {
         const { category } = item;
 
         return array.push(category);
@@ -179,7 +179,7 @@ const itemSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.isError = false;
-        state.product = action.payload;
+        state.item = action.payload;
       })
       .addCase(getItem.rejected, (state, action) => {
         state.isLoading = false;
@@ -208,7 +208,7 @@ const itemSlice = createSlice({
 export const { CALC_CATEGORY } = itemSlice.actions;
 
 export const selectIsLoading = (state) => state.item.isLoading;
-export const selectItem = (state) => state.item.product;
+export const selectItem = (state) => state.item.item;
 export const selectCategory = (state) => state.item.category;
 
 export default itemSlice.reducer;
