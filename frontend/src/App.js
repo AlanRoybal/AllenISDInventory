@@ -15,6 +15,10 @@ import { useDispatch } from "react-redux";
 import { getLoginStatus } from "./services/authService";
 import { SET_LOGIN } from "./redux/features/auth/authSlice";
 import AddItem from "./pages/addItem/AddItem";
+import ItemDetail from "./components/item/itemDetail/ItemDetail";
+import EditItem from "./pages/editItem/EditItem";
+import Profile from "./pages/profile/Profile";
+import EditProfile from "./pages/profile/EditProfile";
 
 axios.defaults.withCredentials = true;
 
@@ -55,6 +59,46 @@ function App() {
             <Sidebar>
               <Layout>
                 <AddItem />
+              </Layout>
+            </Sidebar>
+          }
+        />
+        <Route
+          path="/item-detail/:id"
+          element={
+            <Sidebar>
+              <Layout>
+                <ItemDetail />
+              </Layout>
+            </Sidebar>
+          }
+        />
+        <Route
+          path="/edit-item/:id"
+          element={
+            <Sidebar>
+              <Layout>
+                <EditItem />
+              </Layout>
+            </Sidebar>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <Sidebar>
+              <Layout>
+                <Profile />
+              </Layout>
+            </Sidebar>
+          }
+        />
+        <Route
+          path="/edit-profile"
+          element={
+            <Sidebar>
+              <Layout>
+                <EditProfile />
               </Layout>
             </Sidebar>
           }

@@ -55,12 +55,11 @@ const registerUser = asyncHandler( async (req, res) => {
     });
 
     if (user) {
-        const {_id, name, email, photo, phone, bio} = user;
+        const {_id, name, email, phone, bio} = user;
         res.status(201).json({
             _id: _id,
             name: name,
             email: email,
-            photo: photo,
             phone: phone,
             bio: bio,
             token
@@ -104,12 +103,11 @@ const loginUser = asyncHandler( async (req, res) => {
     });
 
     if (user && passwordIsCorrect) {
-        const {_id, name, email, photo, phone, bio} = user;
+        const {_id, name, email, phone, bio} = user;
         res.status(200).json({
             _id: _id,
             name: name,
             email: email,
-            photo: photo,
             phone: phone,
             bio: bio,
             token
@@ -138,12 +136,11 @@ const getUser = asyncHandler(async (req, res) => {
     const user = await User.findById(req.user._id);
 
   if (user) {
-    const { _id, name, email, photo, phone, bio } = user;
+    const { _id, name, email, phone, bio } = user;
     res.status(200).json({
       _id,
       name,
       email,
-      photo,
       phone,
       bio,
     });
@@ -172,19 +169,17 @@ const updateUser = asyncHandler(async (req, res) => {
     const user = await User.findById(req.user._id);
   
     if (user) {
-      const { name, email, photo, phone, bio } = user;
+      const { name, email, phone, bio } = user;
       user.email = email;
       user.name = req.body.name || name;
       user.phone = req.body.phone || phone;
       user.bio = req.body.bio || bio;
-      user.photo = req.body.photo || photo;
   
       const updatedUser = await user.save();
       res.status(200).json({
         _id: updatedUser._id,
         name: updatedUser.name,
         email: updatedUser.email,
-        photo: updatedUser.photo,
         phone: updatedUser.phone,
         bio: updatedUser.bio,
       });
