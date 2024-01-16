@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ItemList from "../../components/item/itemList/ItemList";
@@ -24,6 +25,11 @@ const Dashboard = () => {
     }
   }, [isLoggedIn, isError, message, dispatch]);
 
+=======
+import React from "react";
+
+const Dashboard = () => {
+>>>>>>> parent of 4dd676c (adding items to database functionality)
   return (
     <div>
       <ItemList items={items} isLoading={isLoading} />

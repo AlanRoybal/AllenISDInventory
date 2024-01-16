@@ -14,11 +14,14 @@ import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
 import { getLoginStatus } from "./services/authService";
 import { SET_LOGIN } from "./redux/features/auth/authSlice";
+<<<<<<< HEAD
 import AddItem from "./pages/addItem/AddItem";
 import ItemDetail from "./components/item/itemDetail/ItemDetail";
 import EditItem from "./pages/editItem/EditItem";
 import Profile from "./pages/profile/Profile";
 import EditProfile from "./pages/profile/EditProfile";
+=======
+>>>>>>> parent of 4dd676c (adding items to database functionality)
 
 axios.defaults.withCredentials = true;
 
@@ -53,6 +56,7 @@ function App() {
             </Sidebar>
           }
         />
+<<<<<<< HEAD
         <Route
           path="/add-item"
           element={
@@ -103,6 +107,8 @@ function App() {
             </Sidebar>
           }
         />
+=======
+>>>>>>> parent of 4dd676c (adding items to database functionality)
       </Routes>
     </BrowserRouter>
   );
