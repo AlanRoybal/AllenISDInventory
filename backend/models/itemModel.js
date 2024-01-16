@@ -28,20 +28,6 @@ const itemSchema = mongoose.Schema(
       required: [true, "Please add a category"],
       trim: true,
     },
-    quantity: {
-      type: String,
-      required: [false, "Please add a quantity"],
-      trim: true,
-    },
-    description: {
-      type: String,
-      required: [true, "Please add a description"],
-      trim: true,
-    },
-    image: {
-      type: Object,
-      default: {},
-    },
   },
   {
     timestamps: true,
