@@ -93,6 +93,7 @@ const loginUser = asyncHandler( async (req, res) => {
     //GENERATE TOKEN
     const token = generateToken(user._id);
 
+    if(passwordIsCorrect){
     //SENDING HTTP COOKIE
     res.cookie("token", token, {
         path: "/",
@@ -101,6 +102,7 @@ const loginUser = asyncHandler( async (req, res) => {
         sameSite: "none",
         secure: true
     });
+    }
 
     if (user && passwordIsCorrect) {
         const {_id, name, email, phone, bio} = user;
