@@ -25,7 +25,7 @@ const itemSchema = mongoose.Schema(
     },
     category: {
       type: String,
-      required: [true, "Please add a category"],
+      required: [true, "Please add a location/user"],
       trim: true,
     },
   },

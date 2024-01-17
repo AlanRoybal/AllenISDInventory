@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
 import ItemForm from "../../components/item/itemForm/ItemForm";
 import {
@@ -16,7 +15,6 @@ const initialState = {
 
 const AddItem = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [item, setItem] = useState(initialState);
 
   const isLoading = useSelector(selectIsLoading);
@@ -48,7 +46,7 @@ const AddItem = () => {
 
     await dispatch(createItem(formData));
 
-    navigate("/dashboard");
+    setItem(initialState);
   };
 
   return (

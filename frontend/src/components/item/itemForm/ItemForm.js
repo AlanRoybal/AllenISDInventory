@@ -34,7 +34,7 @@ const ItemForm = ({
           <label>Item Location/User:</label>
           <input
             type="text"
-            placeholder="Item Category"
+            placeholder="Item Location/User"
             name="category"
             value={item?.category}
             onChange={handleInputChange}

@@ -18,7 +18,9 @@ const getItems = async () => {
 
 // Delete a Product
 const deleteItem = async (id) => {
+  console.log("hello");
   const response = await axios.delete(API_URL + id);
+  console.log(response.data);
   return response.data;
 };
 // Get a Product

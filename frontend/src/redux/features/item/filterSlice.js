@@ -12,6 +12,7 @@ const filterSlice = createSlice({
         const { items, search } = action.payload;
         const tempItems = items.filter(
           (item) =>
+          item.barcode.toLowerCase().includes(search.toLowerCase()) ||
             item.name.toLowerCase().includes(search.toLowerCase()) ||
             item.category.toLowerCase().includes(search.toLowerCase())
         );

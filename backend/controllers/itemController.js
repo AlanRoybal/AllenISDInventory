@@ -58,7 +58,8 @@ const deleteItem = asyncHandler(async (req, res) => {
     res.status(401);
     throw new Error("User not authorized");
   }
-  await item.remove();
+  console.log("hi");
+  await item.deleteOne();
   res.status(200).json({ message: "Item deleted." });
 });
 

@@ -47,7 +47,7 @@ const ItemDetail = () => {
               <b>&rarr; SKU : </b> {item.sku}
             </p>
             <p>
-              <b>&rarr; Category : </b> {item.category}
+              <b>&rarr; Location/User : </b> {item.category}
             </p>
             <hr />
             <div

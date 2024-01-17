@@ -35,6 +35,7 @@ const ItemList = ({ items, isLoading }) => {
     const delItem = async (id) => {
         console.log(id);
         await dispatch(deleteItem(id));
+        console.log("hi");
         await dispatch(getItems());
       };
 
@@ -105,7 +106,7 @@ const ItemList = ({ items, isLoading }) => {
                   <th>s/n</th>
                   <th>Barcode</th>
                   <th>Name</th>
-                  <th>Category</th>
+                  <th>Location/User</th>
                   <th>Action</th>
                 </tr>
               </thead>
