@@ -55,6 +55,7 @@ export const deleteItem = createAsyncThunk(
   "items/delete",
   async (id, thunkAPI) => {
     try {
+      console.log("ggg");
       return await itemService.deleteItem(id);
     } catch (error) {
       const message =
@@ -64,6 +65,7 @@ export const deleteItem = createAsyncThunk(
         error.message ||
         error.toString();
       console.log(message);
+      console.log("hhhh");
       return thunkAPI.rejectWithValue(message);
     }
   }
