@@ -22,7 +22,7 @@
   <p align="center">
     An application to track items in the Allen ISD system. Commissioned by David Ben-Yaakov.
     <br />
-    <a href="alanroybal.github.io"><strong>My Portfolio »</strong></a>
+    <a href="https://alanroybal.github.io"><strong>My Portfolio »</strong></a>
     <br />
     <br />
     <a href="https://github.com/AlanRoybal/AllenISDInventory/issues">Report Bug</a>
