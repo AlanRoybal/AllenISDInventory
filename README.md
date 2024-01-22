@@ -90,7 +90,7 @@ Download: [https://nodejs.org/en/download](https://nodejs.org/en/download)
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   https://github.com/AlanRoybal/AllenISDInventory.git
    ```
 2. Run ```npm run dev``` from the command line
 
